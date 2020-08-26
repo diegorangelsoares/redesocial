@@ -1,17 +1,10 @@
 package com.diego.redesocial.component;
 
 
-import com.diego.redesocial.models.Pessoausuario;
-import com.diego.redesocial.repository.PessoaUsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
-import java.util.ArrayList;
-import java.util.List;
-
-@Component
+//@Component
 public class H2DataBase {
+
+	/*
 	@Autowired
 	private PessoaUsuarioRepository pessoaUsuarioRepository;
 	
@@ -22,11 +15,6 @@ public class H2DataBase {
 
     }
 
-
-	/**Código abaixo insere um dump inicial
-	* @author Diego Rangel
-	* @return 
-	*/
 	public void insertDUMP() {
 
 		List <Pessoausuario> pessoas = new ArrayList<>();
@@ -51,5 +39,6 @@ public class H2DataBase {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 }

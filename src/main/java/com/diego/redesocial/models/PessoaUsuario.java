@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="TAB_PESSOAUSUARIO")
-public class Pessoausuario implements Serializable {
+public class PessoaUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,15 @@ public class Pessoausuario implements Serializable {
     public String telefone;
 
     //List<Pessoa> amigos;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
