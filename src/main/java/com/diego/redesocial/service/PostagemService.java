@@ -27,12 +27,12 @@ public class PostagemService {
         postagemRepository.delete(postagem);
     }
 
-    public Postagem buscarComentariosPorIdPessoa(long id) {
+    public List<Postagem> buscarPostagensPorIdPessoa(long id) {
         List<Postagem> postagems = postagemRepository.findAll();
-        Postagem posts = null;
+        List<Postagem> posts = null;
         for (int i = 0; i < postagems.size(); i++) {
             if (postagems.get(i).getPessoaUsuario().getId() == id) {
-                posts = postagems.get(i);
+                posts.add(postagems.get(i));
             }
         }
         return posts;

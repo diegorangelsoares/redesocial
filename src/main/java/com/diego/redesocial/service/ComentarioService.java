@@ -28,12 +28,12 @@ public class ComentarioService {
         comentarioRepository.delete(comentario);
     }
 
-    public Comentario buscarComentariosPorIdPessoa(long id) {
+    public List<Comentario> buscarComentariosPorIdPessoa(long id) {
         List<Comentario> comentarios = comentarioRepository.findAll();
-        Comentario comentario = null;
+        List<Comentario> comentario = null;
         for (int i = 0; i < comentarios.size(); i++) {
             if (comentarios.get(i).getPessoaUsuario().getId() == id) {
-                comentario = comentarios.get(i);
+                comentario.add(comentarios.get(i));
             }
         }
         return comentario;

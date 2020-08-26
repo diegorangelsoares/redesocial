@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**Classe de tratamentos do usuario
+/**Classe de tratamentos do PessoaUsuario
  * @author Diego Rangel
  */
 @RestController
 @RequestMapping(value="/api")
 @CrossOrigin(origins="*")
 public class PessoaUsuarioResource {
-
-//    @Autowired
-//    private PessoaUsuarioRepository pessoaUsuarioRepository;
 
     @Autowired
     private PessoaUsuarioService pessoaUsuarioService;
@@ -40,7 +37,6 @@ public class PessoaUsuarioResource {
 
     @GetMapping(path="CountPessoasUsuarios")
     public ResponseEntity<?> countUsuarios (Pageable pageable){
-        long quant = 0;
         List<PessoaUsuario> Usuarios = pessoaUsuarioService.buscarTodos();
         return new ResponseEntity<>(Usuarios.size(),HttpStatus.OK);
     }
