@@ -13,8 +13,8 @@ public interface PessoaUsuarioRepository  extends JpaRepository<PessoaUsuario, L
 
     PessoaUsuario findById(long id);
 
-    @Query(value = "select * from TB_PESSOAUSUARIO order by NOME limit 200", nativeQuery = true)
-    List<PessoaUsuario> ReturnPorNome();
+    @Query(value = "select * from TB_PESSOAUSUARIO where upper(nome) like upper(?) order by NOME limit 200", nativeQuery = true)
+    List<PessoaUsuario> ReturnPorNome(String nome);
 
 
 

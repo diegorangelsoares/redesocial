@@ -2,11 +2,11 @@ package com.diego.redesocial.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**Classe do objeto Pessoausuario
  * @author Diego Rangel
- * @return -
  */
 @Entity
 @Table(name="TAB_PESSOAUSUARIO")
@@ -20,9 +20,13 @@ public class PessoaUsuario implements Serializable {
 
     public String nome;
     public String telefone;
+    public String email;
 
-    //List<Pessoa> amigos;
+    @OneToMany
+    private List<PessoaUsuario> amigos = new ArrayList<>();
 
+    @OneToMany
+    private List<Postagem> postagens = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -48,4 +52,27 @@ public class PessoaUsuario implements Serializable {
         this.telefone = telefone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<PessoaUsuario> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(List<PessoaUsuario> amigos) {
+        this.amigos = amigos;
+    }
+
+    public List<Postagem> getPostagens() {
+        return postagens;
+    }
+
+    public void setPostagens(List<Postagem> postagens) {
+        this.postagens = postagens;
+    }
 }

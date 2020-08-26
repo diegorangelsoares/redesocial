@@ -1,8 +1,12 @@
 package com.diego.redesocial.service;
 
 import com.diego.redesocial.erro.ResourceNotFoundException;
+import com.diego.redesocial.models.Comentario;
 import com.diego.redesocial.models.PessoaUsuario;
+import com.diego.redesocial.models.Postagem;
+import com.diego.redesocial.repository.ComentarioRepository;
 import com.diego.redesocial.repository.PessoaUsuarioRepository;
+import com.diego.redesocial.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,19 +22,22 @@ public class PessoaUsuarioService {
     @Autowired
     PessoaUsuarioRepository pessoaUsuarioRepository;
 
-    //Negocio
-    public PessoaUsuario cadastrar(PessoaUsuario pessoaUsuario) {
-        return pessoaUsuarioRepository.save(pessoaUsuario);
-    }
+    @Autowired
+    ComentarioService comentarioService;
 
-    public Collection< PessoaUsuario> buscarTodos(){
+    @Autowired
+    PostagemService postagemService;
+
+    public List< PessoaUsuario> buscarTodos(){
         return pessoaUsuarioRepository.findAll();
     }
 
     public void excluir (PessoaUsuario pessoaUsuario) {
-        //System.out.println("Chamou funcao excluir cliente");
-        verificaSeTemHistorico(pessoaUsuario.getId());
-        pessoaUsuarioRepository.delete(pessoaUsuario);
+        if (verificaSeTemHistorico(pessoaUsuario.getId()) != false){
+            pessoaUsuarioRepository.delete(pessoaUsuario);
+        } else{
+            throw new ResourceNotFoundException("Pessoa possui histórico e não pode ser excluido.");
+        }
     }
 
     public PessoaUsuario buscarPorId(long id) {
@@ -48,6 +55,15 @@ public class PessoaUsuarioService {
         return pessoaUsuarioRepository.save(cliente);
     }
 
+    public PessoaUsuario salvar(PessoaUsuario cliente) {
+        List<PessoaUsuario> pessoa = pessoaUsuarioRepository.ReturnPorNome(cliente.getNome());
+        if (pessoa !=null){
+            return pessoaUsuarioRepository.save(cliente);
+        }else {
+            return null;
+        }
+    }
+
     public PessoaUsuario buscarHistoricoPorIdPessoa(long id) {
        /*
         List<PessoaUsuario> pessoas = pessoaUsuarioRepository.findAll();
@@ -63,15 +79,23 @@ public class PessoaUsuarioService {
         return null;
     }
 
-    public void verificaSeTemHistorico(long idPessoa){
-        PessoaUsuario pro = buscarHistoricoPorIdPessoa(idPessoa);
-        if(pro == null) {
-            //System.out.println("Cliente não possui contrato");
-        }else {
-            //System.out.println("Cliente possui contrato e não pode ser excluido. Contrato: " + pro.getId());
-            throw new ResourceNotFoundException("Pessoa possui histórico e não pode ser excluido.");
-
+    public boolean verificaSeTemHistorico(long idPessoa){
+        Comentario comentario = comentarioService.buscarComentariosPorIdPessoa(idPessoa);
+        Postagem postagem = postagemService.buscarComentariosPorIdPessoa(idPessoa);
+        if (comentario != null || postagem != null){
+            return true;
+        }else{
+            return false;
         }
+
+
+//        PessoaUsuario pro = buscarHistoricoPorIdPessoa(idPessoa);
+//        if(pro == null) {
+//            //System.out.println("Cliente não possui contrato");
+//        }else {
+//            //System.out.println("Cliente possui contrato e não pode ser excluido. Contrato: " + pro.getId());
+//            throw new ResourceNotFoundException("Pessoa possui histórico e não pode ser excluido.");
+//        }
     }
 
 }

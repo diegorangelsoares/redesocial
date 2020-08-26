@@ -2,6 +2,7 @@ package com.diego.redesocial.resources;
 
 import com.diego.redesocial.models.PessoaUsuario;
 import com.diego.redesocial.repository.PessoaUsuarioRepository;
+import com.diego.redesocial.service.PessoaUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -19,35 +20,42 @@ import java.util.List;
 @CrossOrigin(origins="*")
 public class PessoaUsuarioResource {
 
+//    @Autowired
+//    private PessoaUsuarioRepository pessoaUsuarioRepository;
+
     @Autowired
-    private PessoaUsuarioRepository pessoaUsuarioRepository;
+    private PessoaUsuarioService pessoaUsuarioService;
 
     @GetMapping(path="PessoasUsuarios")
     public ResponseEntity<?> listAll(Pageable pageable){
-        return new ResponseEntity<>(pessoaUsuarioRepository.findAll(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(pessoaUsuarioService.buscarTodos(), HttpStatus.OK);
     }
 
     @GetMapping( path="PessoasUsuarios/{id}")
     public ResponseEntity<?> getUsersById(@PathVariable("id") long id){
         //verifyIfUsersExists(id);
-        PessoaUsuario user = pessoaUsuarioRepository.findById(id);
+        PessoaUsuario user = pessoaUsuarioService.buscarPorId(id);
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
     @GetMapping(path="CountPessoasUsuarios")
     public ResponseEntity<?> countUsuarios (Pageable pageable){
         long quant = 0;
-        List<PessoaUsuario> Usuarios = pessoaUsuarioRepository.findAll();
-        for (int i = 0; i < Usuarios.size(); i++) {
-            quant++;
-        }
-        return new ResponseEntity<>(quant,HttpStatus.OK);
+        List<PessoaUsuario> Usuarios = pessoaUsuarioService.buscarTodos();
+        return new ResponseEntity<>(Usuarios.size(),HttpStatus.OK);
     }
 
     @PostMapping(path="PessoasUsuarios")
     public ResponseEntity<?> save(@Validated @RequestBody PessoaUsuario user){
-        pessoaUsuarioRepository.save(user);
+        pessoaUsuarioService.salvar(user);
         return new ResponseEntity<>(user,HttpStatus.OK);
+    }
+
+    @DeleteMapping(path="PessoasUsuarios")
+    public ResponseEntity<?> delete (@Validated @RequestBody PessoaUsuario user){
+        PessoaUsuario pessoaUsuario = pessoaUsuarioService.buscarPorId(user.getId());
+        pessoaUsuarioService.excluir(pessoaUsuario);
+        return new ResponseEntity<>(pessoaUsuario,HttpStatus.OK);
     }
 
 }

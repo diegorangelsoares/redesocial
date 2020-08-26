@@ -6,7 +6,6 @@ import javax.persistence.Id;
 
 /**Classe do objeto Pessoa
  * @author Diego Rangel
- * @return -
  */
 public class Pessoa {
 
