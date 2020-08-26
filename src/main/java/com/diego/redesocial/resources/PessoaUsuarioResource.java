@@ -32,7 +32,11 @@ public class PessoaUsuarioResource {
     public ResponseEntity<?> getUsersById(@PathVariable("id") long id){
         //verifyIfUsersExists(id);
         PessoaUsuario user = pessoaUsuarioService.buscarPorId(id);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        if (user != null){
+            return new ResponseEntity<>(user,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(path="CountPessoasUsuarios")
@@ -43,15 +47,41 @@ public class PessoaUsuarioResource {
 
     @PostMapping(path="PessoasUsuarios")
     public ResponseEntity<?> save(@Validated @RequestBody PessoaUsuario user){
-        pessoaUsuarioService.salvar(user);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        PessoaUsuario pessoa = pessoaUsuarioService.salvar(user);
+        if (pessoa != null){
+            return new ResponseEntity<>(pessoa,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        }
     }
 
+    @PostMapping(path="PessoasUsuarios")
+    public ResponseEntity<?> alterarPessoa (@Validated @RequestBody PessoaUsuario user){
+        PessoaUsuario pessoa = pessoaUsuarioService.alterar(user);
+        if (pessoa != null){
+            return new ResponseEntity<>(pessoa,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        }
+    }
+
+//    @DeleteMapping(path="PessoasUsuarios")
+//    public ResponseEntity<?> delete (@Validated @RequestBody PessoaUsuario user){
+//        PessoaUsuario pessoaUsuario = pessoaUsuarioService.buscarPorId(user.getId());
+//        pessoaUsuarioService.excluir(pessoaUsuario);
+//        return new ResponseEntity<>(pessoaUsuario,HttpStatus.OK);
+//    }
+
     @DeleteMapping(path="PessoasUsuarios")
-    public ResponseEntity<?> delete (@Validated @RequestBody PessoaUsuario user){
-        PessoaUsuario pessoaUsuario = pessoaUsuarioService.buscarPorId(user.getId());
-        pessoaUsuarioService.excluir(pessoaUsuario);
-        return new ResponseEntity<>(pessoaUsuario,HttpStatus.OK);
+    public ResponseEntity<?> deleteById (@Validated @RequestBody long idPessoa){
+        PessoaUsuario pessoaUsuario = pessoaUsuarioService.buscarPorId(idPessoa);
+        if (pessoaUsuario != null){
+            pessoaUsuarioService.excluir(pessoaUsuario);
+            return new ResponseEntity<>(pessoaUsuario,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

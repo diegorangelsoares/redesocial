@@ -56,27 +56,12 @@ public class PessoaUsuarioService {
     }
 
     public PessoaUsuario salvar(PessoaUsuario cliente) {
-        List<PessoaUsuario> pessoa = pessoaUsuarioRepository.ReturnPorNome(cliente.getNome());
+        List<PessoaUsuario> pessoa = pessoaUsuarioRepository.ReturnPorNome(cliente.getNome().toUpperCase());
         if (pessoa !=null){
             return pessoaUsuarioRepository.save(cliente);
         }else {
-            return null;
+            throw new ResourceNotFoundException("Já existe usuário com esse nome!");
         }
-    }
-
-    public PessoaUsuario buscarHistoricoPorIdPessoa(long id) {
-       /*
-        List<PessoaUsuario> pessoas = pessoaUsuarioRepository.findAll();
-        PessoaUsuario pro = null;
-        for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i).getCliente().getId() == id) {
-                pro = pessoas.get(i);
-            }
-        }
-        return pro;
-
-        */
-        return null;
     }
 
     public boolean verificaSeTemHistorico(long idPessoa){
@@ -87,15 +72,6 @@ public class PessoaUsuarioService {
         }else{
             return false;
         }
-
-
-//        PessoaUsuario pro = buscarHistoricoPorIdPessoa(idPessoa);
-//        if(pro == null) {
-//            //System.out.println("Cliente não possui contrato");
-//        }else {
-//            //System.out.println("Cliente possui contrato e não pode ser excluido. Contrato: " + pro.getId());
-//            throw new ResourceNotFoundException("Pessoa possui histórico e não pode ser excluido.");
-//        }
     }
 
 }
