@@ -80,8 +80,8 @@ public class PessoaUsuarioService {
     }
 
     public boolean verificaSeTemHistorico(long idPessoa){
-        Comentario comentario = comentarioService.buscarComentariosPorIdPessoa(idPessoa);
-        Postagem postagem = postagemService.buscarComentariosPorIdPessoa(idPessoa);
+        List<Comentario> comentario = comentarioService.buscarComentariosPorIdPessoa(idPessoa);
+        List<Postagem> postagem = postagemService.buscarPostagensPorIdPessoa(idPessoa);
         if (comentario != null || postagem != null){
             return true;
         }else{
