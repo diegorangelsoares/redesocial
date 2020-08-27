@@ -11,6 +11,8 @@ public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
     Comentario findById(long id);
 
+    List<Comentario> findByPessoaUsuario(PessoaUsuario pessoaUsuario);
+
 //    @Query(value = "select * from TB_COMENTARIO where upper(texto) like '%"+texto+"%' order by NOME limit 200", nativeQuery = true)
 //    List<Comentario> ReturnPorTexto(String texto);
 

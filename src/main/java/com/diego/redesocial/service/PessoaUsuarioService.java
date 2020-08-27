@@ -52,15 +52,28 @@ public class PessoaUsuarioService {
     }
 
     public PessoaUsuario alterar(PessoaUsuario cliente) {
-        return pessoaUsuarioRepository.save(cliente);
+        PessoaUsuario pessoa = pessoaUsuarioRepository.findById(cliente.getId());
+        if (pessoa != null){
+            return pessoaUsuarioRepository.save(cliente);
+        }else{
+            return null;
+        }
+
     }
 
     public PessoaUsuario salvar(PessoaUsuario cliente) {
-        List<PessoaUsuario> pessoa = pessoaUsuarioRepository.ReturnPorNome(cliente.getNome().toUpperCase());
-        if (pessoa !=null){
+        PessoaUsuario pessoa = pessoaUsuarioRepository.findByNome(cliente.getNome());
+        //Cliente novo?
+        if (pessoa ==null){
             return pessoaUsuarioRepository.save(cliente);
         }else {
-            throw new ResourceNotFoundException("Já existe usuário com esse nome!");
+            //Se for mesmo id é pq está alterando
+            if (pessoa.getId() == cliente.getId()){
+                return pessoaUsuarioRepository.save(cliente);
+            }else{
+                throw new ResourceNotFoundException("Já existe usuário com esse nome!");
+            }
+
         }
     }
 

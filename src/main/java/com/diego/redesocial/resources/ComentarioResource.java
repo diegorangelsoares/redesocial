@@ -40,6 +40,12 @@ public class ComentarioResource {
         return new ResponseEntity<>(comentarios.size(),HttpStatus.OK);
     }
 
+    @GetMapping(path="CountComentariosPorPessoa/{idPessoa}")
+    public ResponseEntity<?> CountComentariosPorPessoa (@PathVariable("idPessoa") long idPessoa){
+        int count = comentarioService.QuantidadeComentariosPorPessoa(idPessoa);
+        return new ResponseEntity<>(count,HttpStatus.OK);
+    }
+
     @PostMapping(path="Comentarios")
     public ResponseEntity<?> save(@Validated @RequestBody Comentario comentario){
         comentarioService.salvar(comentario);

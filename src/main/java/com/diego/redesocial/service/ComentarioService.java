@@ -19,8 +19,21 @@ public class ComentarioService {
     @Autowired
     ComentarioRepository comentarioRepository;
 
+    @Autowired
+    PessoaUsuarioRepository pessoaUsuarioRepository;
+
     public List<Comentario> buscarTodos(){
         return comentarioRepository.findAll();
+    }
+
+    public int QuantidadeComentariosPorPessoa(long id){
+        PessoaUsuario pesssoa = pessoaUsuarioRepository.findById(id);
+        List<Comentario> comentarios = comentarioRepository.findByPessoaUsuario(pesssoa);
+        if (comentarios != null){
+            return comentarios.size();
+        }else {
+            return 0;
+        }
     }
 
     public void excluir (Comentario comentario) {
@@ -29,14 +42,9 @@ public class ComentarioService {
     }
 
     public List<Comentario> buscarComentariosPorIdPessoa(long id) {
-        List<Comentario> comentarios = comentarioRepository.findAll();
-        List<Comentario> comentario = null;
-        for (int i = 0; i < comentarios.size(); i++) {
-            if (comentarios.get(i).getPessoaUsuario().getId() == id) {
-                comentario.add(comentarios.get(i));
-            }
-        }
-        return comentario;
+        PessoaUsuario pesssoa = pessoaUsuarioRepository.findById(id);
+        List<Comentario> comentarios = comentarioRepository.findByPessoaUsuario(pesssoa);
+        return comentarios;
     }
 
     public Comentario salvar(Comentario comentario) {
