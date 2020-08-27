@@ -1,0 +1,75 @@
+<style>
+	fieldset{
+		display:inline;
+	}
+</style>
+<div class="campos">
+	<h4>Cadastro de Usu&aacuterios <!--  - {{Usuario.nome}}  --></h4><br/> 
+		
+		<form novalidate name="frmUsuario">
+		
+		<div class="form-group">
+		<label>Nome: </label>
+			<input type="text" class="form-control" style ="font-size:13px; width:600px" ng-minlength="1" ng-maxlength="100" name="txtNome" ng-model="usuario.nome" required/>
+			<span ng-show="frmUsuario.txtNome.$error.required && frmUsuario.txtNome.$dirty">Nome Obrigatório</span>
+		</div>		
+		
+		
+		<div>		
+		<label>Senha: </label>
+			<input type="password" ng-model="usuario.senha" class="form-control" placeholder="Ex.: !a@s#d" style ="font-size:13px; width:600px" name="txtSenha"  required/>
+			<span ng-show="frmUsuario.txtSenha.$error.required && frmUsuario.txtSenha.$dirty">Senha tem que conter no mínimo 3 caracteres!</span>
+		</div>	
+		<!-- 
+		<div>		
+		<label>Perfil: </label>
+			<input type="text" class="form-control"  style ="font-size:13px; width:600px" name="txtPermissao" ng-model="usuario.permissao" required/>
+		</div>
+		 -->
+		<div class="">
+			<label for="singleSelect"> Perfil: </label>
+	    	<select name="singleSelect" class="form-control" ng-model="usuario.permissao" material-select watch required style ="font-size:16px; width:150px">
+	        <option value="admin">Administrador</option>
+	        <option value="auditor">Auditor</option>
+	        <option value="cadastro">Cadastro</option>
+	    </select><br>
+		
+		</div>
+		</div>
+		<div class="campos">	
+			<input type="button" class="btn btn-secondary" value="Salvar" ng-click="salvarUsuarios()"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoUsuario()"ng-disabled="frmUsuario.$invalid"/>
+		</div>
+		<div style="">
+		
+		</div>	
+		<br>
+		</form>
+		<br>
+		<div class="campos">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Usuário</th>
+			      <th scope="col">Perfil</th>
+			      <th scope="col">Excluir</th>
+			       <th scope="col">Alterar</th>
+			    </tr>
+			  </thead>
+				<tbody>
+
+						<tr ng-repeat="usu in usuarios">
+					      <th scope="row">{{usu.id}}</th>
+					      <td>{{usu.nome }}</td>
+					      <td>{{usu.permissao }}</td>
+					      <td><input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirUsuario(usu)"/></td>
+					      <td><input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarUsuario(usu)"/></td>
+					    </tr>
+				    </div>
+				</tbody>
+			</table>
+			
+		</div>
+		
+</div>

@@ -1,0 +1,38 @@
+
+<!-- 
+<div>
+	<form ng-submit="autenticar()">
+	
+		<label>Usuário: </label>
+		<input type="text" ng-model="usuario.nome">
+		
+		<label>Senha: </label>
+		<input type="password" ng-model="usuario.senha">
+		
+		<input type="submit" value="Autenticar">
+		<div></div>
+		
+	</form>
+</div>
+-->
+
+<div>
+ <li class="nav-item login">
+    <form >
+     		<!-- <form ng-submit="autenticar()"> -->
+         <a class="nav-link" >
+			
+				<label>Usuário: </label>
+				<input type="text"  ng-model="usuario.nome">
+				
+				<label>Senha: </label>
+				<input type="password" ng-model="usuario.senha">
+		
+				<input type="submit" class="btn btn-secondary" value="Entrar" ng-click="autenticar()">
+				<div></div>
+				Usuário Logado: {{usuarioLogado.nome}} - Permissão: {{usuarioLogado.permissao}} 
+				<div></div>
+	     </a>
+     </form>
+ </li>
+</div>

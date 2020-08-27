@@ -1,0 +1,81 @@
+<style>
+	fieldset{
+		display:inline;
+	}
+</style>
+
+
+
+<div class="campos">
+	<h4>Cadastro de Propostas</h4><br/> 
+		
+		<form novalidate name="frmProposta">
+		<div>
+		<label>Data do cadastro: </label>
+		 	<input type="date" class="form-control" style ="font-size:13px; width:150px" ng-minlength="1" ng-maxlength="100" name="txtData" ng-model="proposta.data" required/>
+			<span ng-show="frmProposta.txtData.$error.required && frmProposta.txtData.$dirty" >Campo Data Obrigatório</span>
+		</div>	
+		</br>
+		
+		<div>
+		<label for="singleSelect">Usu&aacuterio: </label>
+		    <select name="txtIdUsuario" class="form-control" ng-model="proposta.usuario.id" material-select watch required  style ="font-size:16px; width:400px">
+		     	<option ng-repeat="usu in usuarios" value="{{usu.id}}">{{usu.nome}}</option>
+		    </select><br>
+		<div>
+		
+		<div>
+		<label for="singleSelect">Cliente: </label>
+		    <select name="txtIdCliente" class="form-control" ng-model="proposta.cliente.id" material-select watch required  style ="font-size:16px; width:400px">
+		     	<option ng-repeat="cli in clientes" value="{{cli.id}}">{{cli.nome}}</option>
+		    </select><br>
+		<div>
+		
+		</div>	
+			<!-- <input type="button" value="Salvar" ng-click="salvarClientes()" ng-disabled="frmProposta.$invalid"/> -->
+			<input type="button" class="btn btn-secondary" value="Salvar" ng-click="salvarPropostas()"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoProposta()"ng-disabled="frmProposta.$invalid"/>
+		<div style="">
+		<!-- 
+			<fieldset>
+				<legend>Formulario</legend>
+				valid: {{frmProposta.$valid}}
+			</fieldset>
+			 -->
+		</div>		
+		</form>
+		
+		
+		
+		<div class="campos">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Data</th>
+			      <th scope="col">Cliente</th>
+			      <th scope="col">Status Proposta</th>
+			      <th scope="col">Consultor Respons&aacutevel</th>
+			    </tr>
+			  </thead>
+				<tbody>
+					<!-- id | Cliente | CPF 
+					<div ng-repeat="cli in clientes">
+						{{cli.id + '|' +cli.nome + '|' +cli.cpf}} 
+						<input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirCliente(cli)"/>
+					    <input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarCliente(cli)"/>
+					-->
+						<tr ng-repeat="pro in propostas">
+					      <th scope="row">{{pro.id}}</th>
+					      <td>{{pro.data }}</td>
+					      <td>{{pro.cliente.nome }}</td>
+					      <td>{{pro.statusProposta }}</td>
+					      <td>{{pro.usuario.nome }}</td>
+					    </tr>
+				    </div>
+				</tbody>
+			</table>
+			
+		</div>
+		
+</div>

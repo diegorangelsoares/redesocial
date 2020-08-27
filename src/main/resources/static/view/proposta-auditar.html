@@ -1,0 +1,110 @@
+<style>
+	fieldset{
+		display:inline;
+	}
+</style>
+
+<div class="campos">
+	<h4>Auditar Propostas</h4> <br/> 
+		
+		<form novalidate name="frmPropostaAuditar" >
+		<div>
+			<label for="singleSelect">Data do cadastro: </label>
+			<input type="text" class="form-control" disabled="true" ng-minlength="1" ng-maxlength="100" name="txtData" ng-model="proposta.data" required  style ="font-size:16px; width:150px"/>
+			<span ng-show="frmPropostaAuditar.txtData.$error.required && frmPropostaAuditar.txtData.$dirty">Campo Data Obrigatório</span>
+		</div>
+			</br>
+		<div>
+			<label for="singleSelect">Usu&aacuterio auditor: </label>
+			<input type="text" class="form-control" disabled="true" ng-minlength="1" ng-maxlength="10" name="txtIdUsuario" ng-model="proposta.usuario.nome" required  style ="font-size:16px; width:150px"/>
+	    	<span ng-show="frmPropostaAuditar.txtIdUsuario.$error.required && frmPropostaAuditar.txtIdUsuario.$dirty">Campo Id do Usuário Obrigatório</span> 
+		</div>	
+		</br>
+		<div>
+			<label for="singleSelect">Cliente: </label>
+			<input type="text" class="form-control" disabled="true" ng-minlength="1" ng-maxlength="10" name="txtIdCliente" ng-model="proposta.cliente.nome" required  style ="font-size:16px; width:400px"/>
+		</div>			
+		 </br>
+		<div class="">
+			<label for="singleSelect"> Status Proposta: </label>
+			<!--<label> Status Proposta: </label> -->
+	    	<select name="singleSelect" class="form-control" ng-model="proposta.statusProposta" material-select watch required style ="font-size:16px; width:150px">
+	        <option value="autorizada">Autorizada</option>
+	        <option value="pendente">Pendente</option>
+	        <option value="negada">Negada</option>
+	    </select><br>
+		<div>
+		 
+		<label for="singleSelect"> Status dos Documentos: </label>
+	    <select name="singleSelect" class="form-control" ng-model="proposta.statusDocumentos" required style ="font-size:16px; width:150px">
+	      <option value="autorizada">Autorizada</option>
+	      <option value="pendente">Pendente</option>
+	      <option value="negada">Negada</option>
+	    </select><br>
+		<div>
+		 
+		<div>
+		<label for="singleSelect"> Status SPC: </label>
+	    <select name="singleSelect" class="form-control" ng-model="proposta.statusSPC" material-select watch required  style ="font-size:16px; width:150px">
+	      <option value="autorizada">Autorizada</option>
+	      <option value="pendente">Pendente</option>
+	      <option value="negada">Negada</option>
+	    </select><br>
+		<div>
+		
+		</div>	
+			<!-- <input type="button" value="Salvar" ng-click="salvarClientes()" ng-disabled="frmPropostaAuditar.$invalid"/> -->
+			<input type="button" class="btn btn-secondary" value="Salvar" ng-click="salvarPropostas()"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoProposta()"ng-disabled="frmPropostaAuditar.$invalid"/>
+		<div style="">
+		</br>
+		<!-- 
+			<fieldset>
+				<legend>Formulario</legend>
+				valid: {{frmPropostaAuditar.$valid}}
+			</fieldset>
+			 -->
+		</div>		
+		</form>
+		
+		
+		<div class="campos">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Data</th>
+			      <th scope="col">Cliente</th>
+			      <th scope="col">Consultor Respons&aacutevel</th>
+			      <th scope="col">Status Proposta</th>
+			      <th scope="col">Status SPC</th>
+			      <th scope="col">Status Documentos</th>
+			      <th scope="col">Excluir</th>
+			      <th scope="col">Auditar</th>
+			    </tr>
+			  </thead>
+				<tbody>
+					<!-- id | Cliente | CPF 
+					<div ng-repeat="cli in clientes">
+						{{cli.id + '|' +cli.nome + '|' +cli.cpf}} 
+						<input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirCliente(cli)"/>
+					    <input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarCliente(cli)"/>
+					-->
+						<tr ng-repeat="pro in propostas">
+					      <th scope="row">{{pro.id}}</th>
+					      <td>{{pro.data }}</td>
+					      <td>{{pro.cliente.nome }}</td>
+					      <td>{{pro.usuario.nome }}</td>
+					      <td>{{pro.statusProposta }}</td>
+					      <td>{{pro.statusSPC }}</td>
+					      <td>{{pro.statusDocumentos }}</td>
+					      <td><input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirProposta(pro)"/></td>
+					      <td><input type="button" class="btn btn-secondary" value="Auditar" ng-click="alterarProposta(pro)"/></td>
+					    </tr>
+				    </div>
+				</tbody>
+			</table>
+			
+		</div>
+		
+</div>

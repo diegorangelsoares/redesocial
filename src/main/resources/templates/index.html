@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="appCliente">
+	<head>
+	
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!--<meta http-equiv=”Content-Type” content=”text/html; charset=iso-8859-1″>-->
+		<title>Cadastro de Propostas - Cartão VISA</title>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>    	
+    	
+    	<!-- Principal CSS do Bootstrap -->
+    	<link href="./css/bootstrap.min.css" rel="stylesheet">
+    	
+    	<!-- Estilos customizados para esse template -->
+    	<link href="./css/estilo1.css" rel="stylesheet">    	
+
+		<script src="./js/app.js"></script>
+		<script src="./js/controller/cliente-controller.js"></script>
+		<script src="./js/controller/usuario-controller.js"></script>
+		<script src="./js/controller/cliente-detalhe-controller.js"></script>
+		<script src="./js/controller/main-controller.js"></script>
+		<script src="./js/controller/login-controller.js"></script>
+		<script src="./js/controller/proposta-controller.js"></script>
+		<script src="./js/controller/proposta-auditar-controller.js"></script>
+		<script src="./js/controller/proposta-detalhe-controller.js"></script>
+		<script src="./js/controller/acesso-negado-controller.js"></script>
+		<script src="./js/controller/home-controller.js"></script>
+		<!-- <script src="./js/Interceptor/token-interceptor.js"></script> -->
+		<!-- Materialize CSS 
+		-->
+		<!-- JavaScript para tratar máscaras -->
+		<script language="JavaScript" type="text/javascript" src="./js/controller/MascaraValidacao.js"></script> 
+	  </head>
+	  <body ng-controller="mainController">
+	
+		  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			  <a class="navbar-brand" href="#"></a>
+			  <button class="navbar-toggler menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav">
+			      <li class="nav-item active">
+			        <!-- <a class="nav-link" href="#/home">Home <span class="sr-only">(Página atual)</span></a> -->
+			        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" ng-show="$root.usuarioLogado != null" href="#/clientes">Cadastro de Clientes</a> 
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" ng-show="$root.usuarioLogado != null" href="#/propostas">Cadastro de Propostas</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" ng-show="$root.usuarioLogado != null && $root.usuarioLogado.permissao == 'auditor'" href="#/propostasAuditar">Auditar Propostas</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" ng-show="$root.usuarioLogado != null && $root.usuarioLogado.nome == 'admin'" href="#/usuarios">Cadastro de Usuários</a>
+			      </li>
+			      <!-- 
+			      <li class="nav-item active">
+			        <a class="nav-link" href="#/logout" ng-click="logout()">Sair</a>
+			      </li>
+			        -->
+			      <li class="nav-item login" style="text-align:right">
+			       		<form >
+					         <a class="nav-link" > 
+									<label>Usuário: </label>
+									<input type="text"  ng-model="usuario.nome">
+									
+									<label>Senha: </label>
+									<input type="password" ng-model="usuario.senha">
+							
+									<input type="submit" class="btn btn-secondary" value="Entrar" ng-click="autenticar()">
+									<input type="submit" class="btn btn-secondary" value="Sair" ng-click="logout()">
+									<div></div>
+									{{mensagem}} <!--  - Permissão: {{usuarioLogado.permissao}}  -->
+									<div></div>
+						     </a>
+				      </form>
+		      	 </li>
+		      	 
+		    </ul>
+		    
+		  </div>
+		</nav>
+	 
+		<div class="generic-container">
+			<h1>Cadastro de Propostas - Cartão VISA</h1>
+		</div>
+		<div class="mt-5">
+			<h2>			
+				{{mensagemQuantidades}}
+			</h2>
+		</div>
+		</br>
+		</br>
+		<div ng-view></div>
+		<div></div>
+		<div></div>
+		
+	</body>
+	
+
+</html>

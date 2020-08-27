@@ -1,0 +1,71 @@
+<style>
+	fieldset{
+		display:inline;
+	}
+</style>
+<div class="campos">
+	<h4>Cadastro de Clientes <!--  - {{cliente.nome}}  --></h4><br/> 
+		
+		<form novalidate name="frmCliente">
+		
+		<div class="form-group">
+		<label>Nome: </label>
+			<input type="text" class="form-control" style ="font-size:13px; width:600px" ng-minlength="1" ng-maxlength="100" name="txtNome" ng-model="cliente.nome" required/>
+			<span ng-show="frmCliente.txtNome.$error.required && frmCliente.txtNome.$dirty">Nome Obrigatório</span>
+		</div>	
+		<div>
+		<label>CPF: </label>
+			<input type="text" class="form-control" onBlur="ValidarCPF(frmCliente.txtCpf);" onKeyPress="MascaraCPF(frmCliente.txtCpf);" maxlength="14" placeholder="Ex.: 000.000.000-00" style ="font-size:13px; width:600px" ng-minlength="14" ng-maxlength="14" name="txtCpf" ng-model="cliente.cpf" required/>
+			<span ng-show="frmCliente.txtCpf.$error.required && frmCliente.txtCpf.$dirty">CPF Inválido</span>
+		</div>
+		</br>
+		<div>
+		<label>E-mail: </label>
+			<input type="email" class="form-control" placeholder="Ex.: joao@gmail.com" style ="font-size:13px; width:600px" name="txtEmail" ng-model="cliente.email" required/>
+			<span ng-show="frmCliente.txtEmail.$error.email">E-mail inválido</span>
+		</div>	
+		</div>
+		<br>
+		</div>
+		<div class="campos">	
+			<input type="button" class="btn btn-secondary" value="Salvar" ng-click="salvarClientes()"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoCliente()"ng-disabled="frmCliente.$invalid"/>
+		</div>
+		<div style="">
+		
+		</div>	
+		<br>
+		</form>
+		<br>
+		<div class="campos">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Cliente</th>
+			      <th scope="col">CPF</th>
+			      <th scope="col">Excluir</th>
+			       <th scope="col">Altera</th>
+			    </tr>
+			  </thead>
+				<tbody>
+					<!-- id | Cliente | CPF 
+					<div ng-repeat="cli in clientes">
+						{{cli.id + '|' +cli.nome + '|' +cli.cpf}} 
+						<input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirCliente(cli)"/>
+					    <input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarCliente(cli)"/>
+					-->
+						<tr ng-repeat="cli in clientes">
+					      <th scope="row">{{cli.id}}</th>
+					      <td>{{cli.nome }}</td>
+					      <td>{{cli.cpf }}</td>
+					      <td><input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirCliente(cli)"/></td>
+					      <td><input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarCliente(cli)"/></td>
+					    </tr>
+				    </div>
+				</tbody>
+			</table>
+			
+		</div>
+		
+</div>

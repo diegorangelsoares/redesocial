@@ -13,7 +13,7 @@ public class RedesocialApplication {
 				"Link de acesso ao Swagger http://localhost:8080/swagger-ui.html\n" +
 				"\n" +
 				"\n"+
-				"Link do banco H2 http://localhost:8080/h2" +
+				"Link de acesso a interface Angular http://localhost:8080/#/\n" +
 				"\n" +
 				"\n");
 

@@ -22,6 +22,9 @@ public class PessoaUsuario implements Serializable {
     public String telefone;
     public String email;
 
+    public String login;
+    public String senha;
+
     @OneToMany
     private List<PessoaUsuario> amigos = new ArrayList<>();
 
@@ -74,5 +77,21 @@ public class PessoaUsuario implements Serializable {
 
     public void setPostagens(List<Postagem> postagens) {
         this.postagens = postagens;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
