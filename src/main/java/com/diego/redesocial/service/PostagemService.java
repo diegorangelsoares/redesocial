@@ -1,7 +1,9 @@
 package com.diego.redesocial.service;
 
+import com.diego.redesocial.models.PessoaUsuario;
 import com.diego.redesocial.models.Postagem;
 import com.diego.redesocial.repository.ComentarioRepository;
+import com.diego.redesocial.repository.PessoaUsuarioRepository;
 import com.diego.redesocial.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class PostagemService {
     @Autowired
     PostagemRepository postagemRepository;
 
+    @Autowired
+    PessoaUsuarioRepository pessoaUsuarioRepository;
+
     public List<Postagem> buscarTodos(){
         return postagemRepository.findAll();
     }
@@ -28,14 +33,9 @@ public class PostagemService {
     }
 
     public List<Postagem> buscarPostagensPorIdPessoa(long id) {
-        List<Postagem> postagems = postagemRepository.findAll();
-        List<Postagem> posts = null;
-        for (int i = 0; i < postagems.size(); i++) {
-            if (postagems.get(i).getPessoaUsuario().getId() == id) {
-                posts.add(postagems.get(i));
-            }
-        }
-        return posts;
+        PessoaUsuario pessoa = pessoaUsuarioRepository.findById(id);
+        List<Postagem> postagems = postagemRepository.findByPessoaUsuario(pessoa);
+        return postagems;
     }
 
     public Postagem salvar(Postagem postagem) {
