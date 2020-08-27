@@ -51,6 +51,11 @@ public class PessoaUsuarioService {
         return cli;
     }
 
+    public PessoaUsuario buscarPorNome(String nome) {
+        PessoaUsuario pessoa = pessoaUsuarioRepository.findByNome(nome);
+        return pessoa;
+    }
+
     public PessoaUsuario alterar(PessoaUsuario cliente) {
         PessoaUsuario pessoa = pessoaUsuarioRepository.findById(cliente.getId());
         if (pessoa != null){
@@ -75,6 +80,11 @@ public class PessoaUsuarioService {
             }
 
         }
+    }
+
+    public PessoaUsuario buscarPorLogin(String login){
+        PessoaUsuario pessoa = pessoaUsuarioRepository.findByLogin(login);
+        return pessoa;
     }
 
     public boolean verificaSeTemHistorico(long idPessoa){

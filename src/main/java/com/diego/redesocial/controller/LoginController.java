@@ -1,6 +1,8 @@
 package com.diego.redesocial.controller;
 
 
+import com.diego.redesocial.models.PessoaUsuario;
+import com.diego.redesocial.service.PessoaUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,30 +19,29 @@ import javax.servlet.ServletException;
 @RestController
 public class LoginController {
 
-	/*
+
 	@Autowired
-	UsuarioService usuarioService;
+    PessoaUsuarioService pessoaUsuarioService;
 	
 	ConvertPasswordToMD5 convertPasswordToMD5 = new ConvertPasswordToMD5();
 		
 	//End point
 	@RequestMapping(method = RequestMethod.POST, value="/autenticar",consumes = MediaType.APPLICATION_JSON_VALUE)
-	public loginResponse autenticar(@RequestBody Usuario usuario) throws ServletException {
+	public loginResponse autenticar(@RequestBody PessoaUsuario pessoaUsuario) throws ServletException {
 
 		//System.out.println("Usuario: "+usuario.getNome());
-		if ( usuario.getNome() == null) {
+		if ( pessoaUsuario.getLogin() == null) {
 			throw new ServletException("Nome e senha obrigatório.");
 		}
 
-		Usuario usuarioAutenticado = usuarioService.buscarPorNome(usuario.getNome());
-		//System.out.println("Chama a funcao usuarioService.buscarPorNome(usuario.getNome()) Resultado Usuario: "+usuarioAutenticado.getNome()+" Senha: "+usuarioAutenticado.getSenha());
-		
+        PessoaUsuario usuarioAutenticado = pessoaUsuarioService.buscarPorLogin(pessoaUsuario.getNome());
+
 		//Usuário não pode ser null
 		if (usuarioAutenticado == null) {
 			throw new ServletException("Usuário ou senha inválido.");
 		}
 
-		if (!usuarioAutenticado.getSenha().equals(convertPasswordToMD5.encripta(usuario.getSenha()))) {
+		if (!usuarioAutenticado.getSenha().equals(convertPasswordToMD5.encripta(pessoaUsuario.getSenha()))) {
 			throw new ServletException("Usuário ou senha inválido.");
 		}
 
@@ -52,6 +53,6 @@ public class LoginController {
 		return new loginResponse(usuarioAutenticado);
 		//return usuario;
 	}
-*/
+
 
 }

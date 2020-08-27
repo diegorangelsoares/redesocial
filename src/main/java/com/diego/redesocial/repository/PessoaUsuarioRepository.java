@@ -15,6 +15,8 @@ public interface PessoaUsuarioRepository  extends JpaRepository<PessoaUsuario, L
 
     PessoaUsuario findByNome(String nome);
 
+    PessoaUsuario findByLogin(String login);
+
     //@Query("SELECT u FROM TAB_PESSOAUSUARIO u WHERE upper(u.nome) = ?1")
 //    @Query("SELECT u FROM TAB_PESSOAUSUARIO u WHERE upper(u.nome) = ?1")
 //    List<PessoaUsuario> ReturnPorNome(String nome);
