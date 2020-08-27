@@ -7,18 +7,15 @@ appCliente.controller("homeController", function ($scope, $http){
 	$scope.quantidadePropostas=0;	
 	
 	carregarPropostas = function (){
-		//token = localStorage.getItem("userToken");
-		//$http.defaults.headers.common.Authorization = 'Bearer '+token;
-		//$http({method:'GET', url:'/admin/Propostas'})
-		$http({method:'GET', url:'/Propostas'})
+
+		$http({method:'GET', url:'/Postagens'})
 		.then(function(response){
 			$scope.propostas = response.data;
-			//$scope.quantidadePropostas = $scope.usuario.count();
 			console.log(response.data);
-			console.log(response.status);
+			//console.log(response.status);
 		}, function (response){
 			console.log(response.data);
-			console.log(response.status);
+			//console.log(response.status);
 		});
 	};
 	
