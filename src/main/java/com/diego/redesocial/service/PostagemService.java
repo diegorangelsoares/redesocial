@@ -38,7 +38,16 @@ public class PostagemService {
         return postagems;
     }
 
+    public Postagem buscarPorId (long id){
+        Postagem postagem = postagemRepository.findById(id);
+        return postagem;
+    }
+
     public Postagem salvar(Postagem postagem) {
+        return postagemRepository.save(postagem);
+    }
+
+    public Postagem alterar(Postagem postagem) {
         return postagemRepository.save(postagem);
     }
 

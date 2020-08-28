@@ -18,8 +18,8 @@ appCliente.controller("postagensController", function ($scope, $http){
 		//token = localStorage.getItem("userToken");
 		//$http.defaults.headers.common.Authorization = 'Bearer '+token;
 		//$http({method:'GET', url:'/admin/Propostas'})
-		$http({method:'GET', url:'/Propostas'})
-		.then(function(response){
+		$http({method:'GET', url:'/Postagens'})
+		.then(function(response){PropostaController
 			$scope.propostas = response.data;
 			//$scope.quantidadePropostas = $scope.usuario.count();
 			console.log(response.data);

@@ -27,7 +27,7 @@
 <!--		<script src="./js/controller/cliente-detalhe-controller.js"></script>-->
 		<script src="./js/controller/main-controller.js"></script>
 		<script src="./js/controller/login-controller.js"></script>
-<!--		<script src="./js/controller/proposta-controller.js"></script>-->
+		<script src="./js/controller/postagem-controller.js"></script>
 <!--		<script src="./js/controller/proposta-auditar-controller.js"></script>-->
 <!--		<script src="./js/controller/proposta-detalhe-controller.js"></script>-->
 		<script src="./js/controller/acesso-negado-controller.js"></script>
@@ -55,9 +55,9 @@
 
 			        <a class="nav-link" ng-show="$root.usuarioLogado == null" href="#/clientes">Não Sou Cadastrado</a>
 			      </li>
-<!--			      <li class="nav-item">-->
-<!--			        <a class="nav-link" ng-show="$root.usuarioLogado != null" href="#/propostas">Cadastro de Propostas</a>-->
-<!--			      </li>-->
+			      <li class="nav-item">
+			        <a class="nav-link" ng-show="$root.usuarioLogado != null" href="#/propostas">Últimas Postagens</a>
+			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" ng-show="$root.usuarioLogado != null && $root.usuarioLogado.permissao == 'auditor'" href="#/propostasAuditar">Auditar Propostas</a>
 			      </li>
