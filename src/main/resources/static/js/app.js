@@ -9,10 +9,10 @@ appCliente.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'view/cliente.html',
 			controller : "clienteController"
 		})
-		// .when('/propostas', {
-		// 	templateUrl: 'view/proposta.html',
-		// 	controller : "propostaController"
-		// })
+		.when('/propostas', {
+			templateUrl: 'view/postagens.html',
+			controller : "postagensController"
+		})
 		// .when('/propostasAuditar', {
 		// 	templateUrl: 'view/proposta-auditar.html',
 		// 	controller : "propostaAuditarController"

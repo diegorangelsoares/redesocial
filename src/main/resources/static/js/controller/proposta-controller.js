@@ -1,5 +1,5 @@
 //criacao de constrollers
-appCliente.controller("propostaController", function ($scope, $http){
+appCliente.controller("postagensController", function ($scope, $http){
 	//Variaveis
 	$scope.propostas = [];
 	$scope.proposta={}; // o que setar aqui reflete na tela  -> bind com o model
