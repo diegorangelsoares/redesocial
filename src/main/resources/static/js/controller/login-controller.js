@@ -6,9 +6,10 @@ appCliente.controller("loginController", function ($scope, $http){
 	//$scope.token = "";
 	
 	$scope.autenticar = function (){
-		console.log("CHAMOU AUTENTICAR: "); 
+		//console.log("CHAMOU AUTENTICAR");
+		//esta funcao nao eh usado pelo login do angular
 		$http.post("/autenticar",$scope.usuario).then(function(response){ //http://localhost:8080/autenticar
-			console.log("Sucesso - "+response);
+			//console.log("Sucesso - "+response);
 			//$scope.token = response.data.token;
 			//localStorage.setItem("userToken", response.data.token);
 			//$scope.usuarioLogado = response.data.usuario;

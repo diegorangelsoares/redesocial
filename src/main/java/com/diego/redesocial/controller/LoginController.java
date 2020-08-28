@@ -29,12 +29,12 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value="/autenticar",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public loginResponse autenticar(@RequestBody PessoaUsuario pessoaUsuario) throws ServletException {
 
-		//System.out.println("Usuario: "+usuario.getNome());
+		System.out.println("Login: "+pessoaUsuario.getLogin());
 		if ( pessoaUsuario.getLogin() == null) {
-			throw new ServletException("Nome e senha obrigatório.");
+			throw new ServletException("Login e senha obrigatório.");
 		}
 
-        PessoaUsuario usuarioAutenticado = pessoaUsuarioService.buscarPorLogin(pessoaUsuario.getNome());
+        PessoaUsuario usuarioAutenticado = pessoaUsuarioService.buscarPorLogin(pessoaUsuario.getLogin());
 
 		//Usuário não pode ser null
 		if (usuarioAutenticado == null) {

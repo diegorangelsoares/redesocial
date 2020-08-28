@@ -39,7 +39,7 @@ public class loginResponse {
 		return pessoaUsuario;
 	}
 
-	public void setUsuario(PessoaUsuario usuario) {
+	public void setUsuario(PessoaUsuario pessoaUsuario) {
 		this.pessoaUsuario = pessoaUsuario;
 	}
 	

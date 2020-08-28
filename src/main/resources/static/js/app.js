@@ -5,10 +5,10 @@ var appCliente = angular.module("appCliente", ['ngRoute']);
 
 appCliente.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
-		// .when('/clientes', {
-		// 	templateUrl: 'view/cliente.html',
-		// 	controller : "clienteController"
-		// })
+		.when('/clientes', {
+			templateUrl: 'view/cliente.html',
+			controller : "clienteController"
+		})
 		// .when('/propostas', {
 		// 	templateUrl: 'view/proposta.html',
 		// 	controller : "propostaController"
