@@ -5,10 +5,10 @@ var appCliente = angular.module("appCliente", ['ngRoute']);
 
 appCliente.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
-		.when('/clientes', {
-			templateUrl: 'view/cliente.html',
-			controller : "clienteController"
-		})
+		// .when('/clientes', {
+		// 	templateUrl: 'view/cliente.html',
+		// 	controller : "clienteController"
+		// })
 		// .when('/propostas', {
 		// 	templateUrl: 'view/proposta.html',
 		// 	controller : "propostaController"
@@ -21,10 +21,10 @@ appCliente.config(['$routeProvider', function($routeProvider) {
 		// 	templateUrl: 'view/cliente-detalhe.html',
 		// 	controller : "clienteDetalheController"
 		// })
-		.when('/acessoNegado', {
-            templateUrl: 'view/acessoNegado.html',
-            controller: 'acessoNegadoController'
-        })
+		// .when('/acessoNegado', {
+        //     templateUrl: 'view/acessoNegado.html',
+        //     controller: 'acessoNegadoController'
+        // })
         // .when('/usuarios', {
         //     templateUrl: 'view/usuario.html',
         //     controller: 'usuarioController'
@@ -34,10 +34,10 @@ appCliente.config(['$routeProvider', function($routeProvider) {
 		// 	//controller : "mainController",
 		// 	redirectTo:'/'
 		// })
-		// .when('/home', {
-		// 	templateUrl: 'view/home.html',
-        //     controller: 'homeController'
-		// })
+		.when('/home', {
+			templateUrl: 'view/home.html',
+            controller: 'homeController'
+		})
 		.otherwise({redirectTo:'/'});	
 	
 	// configure html5 to get links working on jsfiddle
@@ -46,15 +46,3 @@ appCliente.config(['$routeProvider', function($routeProvider) {
 }]);
 
 
-
-
-/**
-appCliente.config(function($httpProvider){
-		
-	$httpProvider.interceptors.push('tokenInterceptor');
-
-
-	
-});
-
-*/

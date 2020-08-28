@@ -12,7 +12,7 @@ appCliente.controller("usuarioController", function ($scope, $http){
 		//token = localStorage.getItem("userToken");
 		//$http.defaults.headers.common.Authorization = 'Bearer '+token;		
 		//$http({method:'GET', url:'http://localhost:8080/admin/clientes'})
-		$http({method:'GET', url:'http://localhost:8080/Usuarios'})
+		$http({method:'GET', url:'http://localhost:8080/PessoasUsuarios'})
 		.then(function(response){
 			$scope.usuarios = response.data;			
 			//console.log(response.data);
@@ -26,7 +26,7 @@ appCliente.controller("usuarioController", function ($scope, $http){
 	$scope.salvarUsuarios = function (){		
 		if ($scope.frmUsuario.$valid){
 			//$http({method:'POST', url:'http://localhost:8080/admin/clientes', data:$scope.cliente})
-			$http({method:'POST', url:'http://localhost:8080/Usuarios', data:$scope.usuario})
+			$http({method:'POST', url:'http://localhost:8080/PessoasUsuarios', data:$scope.usuario})
 			.then(function(response){
 				console.log("Chamou a funcao salvar no usuario-controller.js");
 				$scope.usuarios.push (response.data);
