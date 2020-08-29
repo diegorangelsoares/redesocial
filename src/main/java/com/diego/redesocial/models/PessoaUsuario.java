@@ -14,6 +14,9 @@ public class PessoaUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private static final String STATUS_ATIVO = "ATIVO";
+    private static final String STATUS_INATIVO = "INATIVO";
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long id;
@@ -24,6 +27,8 @@ public class PessoaUsuario implements Serializable {
 
     public String login;
     public String senha;
+
+    public String status;
 
     @OneToMany
     private List<PessoaUsuario> amigos = new ArrayList<>();
@@ -93,5 +98,13 @@ public class PessoaUsuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

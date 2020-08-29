@@ -7,32 +7,36 @@
 <div class="campos">
 	<h4>Posts</h4><br/>
 		
-		<form novalidate name="frmProposta">
-		<div>
-		<label>Data do cadastro: </label>
-		 	<input type="date" class="form-control" style ="font-size:13px; width:150px" ng-minlength="1" ng-maxlength="100" name="txtData" ng-model="proposta.data" required/>
-			<span ng-show="frmProposta.txtData.$error.required && frmProposta.txtData.$dirty" >Campo Data Obrigat�rio</span>
-		</div>	
-		</br>
+		<form novalidate name="frmPostagem">
+<!--		<div>-->
+<!--		<label>Data do cadastro: </label>-->
+<!--		 	<input type="date" class="form-control" style ="font-size:13px; width:150px" ng-minlength="1" ng-maxlength="100" name="txtData" ng-model="proposta.data" required/>-->
+<!--			<span ng-show="frmPostagem.txtData.$error.required && frmPostagem.txtData.$dirty" >Campo Data Obrigatório</span>-->
+<!--		</div>	-->
+<!--		</br>-->
 		
-		<div>
-		<label for="singleSelect">Usu&aacuterio: </label>
-		    <select name="txtIdUsuario" class="form-control" ng-model="proposta.usuario.id" material-select watch required  style ="font-size:16px; width:400px">
-		     	<option ng-repeat="usu in usuarios" value="{{usu.id}}">{{usu.nome}}</option>
-		    </select><br>
-		<div>
+<!--		<div>-->
+<!--		<label for="singleSelect">Usu&aacuterio: </label>-->
+<!--		    <select name="txtIdUsuario" class="form-control" ng-model="proposta.usuario.id" material-select watch required  style ="font-size:16px; width:400px">-->
+<!--		     	<option ng-repeat="usu in usuarios" value="{{usu.id}}">{{usu.nome}}</option>-->
+<!--		    </select><br>-->
+<!--		<div>-->
 		
-		<div>
-		<label for="singleSelect">Cliente: </label>
-		    <select name="txtIdCliente" class="form-control" ng-model="proposta.cliente.id" material-select watch required  style ="font-size:16px; width:400px">
-		     	<option ng-repeat="cli in clientes" value="{{cli.id}}">{{cli.nome}}</option>
-		    </select><br>
-		<div>
-		
-		</div>	
+<!--		<div>-->
+<!--		<label for="singleSelect">Cliente: </label>-->
+<!--		    <select name="txtIdCliente" class="form-control" ng-model="proposta.cliente.id" material-select watch required  style ="font-size:16px; width:400px">-->
+<!--		     	<option ng-repeat="cli in clientes" value="{{cli.id}}">{{cli.nome}}</option>-->
+<!--		    </select><br>-->
+<!--		<div>-->
+
+			<div class="form-group">
+				<label>O que você deseja postar? </label>
+				<input type="text" class="form-control" style ="font-size:13px; width:600px" ng-minlength="1" ng-maxlength="300" name="txtTexto" ng-model="postagem.texto" required/>
+				<span ng-show="frmPostagem.txtTexto.$error.required && frmPostagem.txtTexto.$dirty">Texto obrigatório</span>
+			</div>
 			<!-- <input type="button" value="Salvar" ng-click="salvarClientes()" ng-disabled="frmProposta.$invalid"/> -->
-			<input type="button" class="btn btn-secondary" value="Salvar" ng-click="salvarPropostas()"/>
-			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoProposta()"ng-disabled="frmProposta.$invalid"/>
+			<input type="button" class="btn btn-secondary" value="Postar" ng-click="salvarPostagem()"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoProposta()"ng-disabled="frmPostagem.$invalid"/>
 		<div style="">
 		<!-- 
 			<fieldset>
@@ -42,18 +46,18 @@
 			 -->
 		</div>		
 		</form>
-		
+		</br>
 		
 		
 		<div class="campos">
 			<table class="table">
 			  <thead>
 			    <tr>
-			      <th scope="col">ID</th>
+<!--			      <th scope="col">ID</th>-->
 			      <th scope="col">Data</th>
-			      <th scope="col">Cliente</th>
-			      <th scope="col">Status Proposta</th>
-			      <th scope="col">Consultor Respons&aacutevel</th>
+			      <th scope="col">Usuário</th>
+<!--			      <th scope="col">Status</th>-->
+			      <th scope="col">Texto</th>
 			    </tr>
 			  </thead>
 				<tbody>
@@ -63,12 +67,12 @@
 						<input type="button" class="btn btn-secondary" value="Excluir" ng-click="excluirCliente(cli)"/>
 					    <input type="button" class="btn btn-secondary" value="Alterar" ng-click="alterarCliente(cli)"/>
 					-->
-						<tr ng-repeat="pro in propostas">
-					      <th scope="row">{{pro.id}}</th>
-					      <td>{{pro.data }}</td>
-					      <td>{{pro.cliente.nome }}</td>
-					      <td>{{pro.statusProposta }}</td>
-					      <td>{{pro.usuario.nome }}</td>
+						<tr ng-repeat="po in postagens">
+<!--					      <th scope="row">{{pro.id}}</th>-->
+					      <td>{{po.data }}</td>
+					      <td>{{po.clienteUsuario.nome }}</td>
+					      <td>{{po.texto }}</td>
+<!--					      <td>{{po.usuario.nome }}</td>-->
 					    </tr>
 				    </div>
 				</tbody>
