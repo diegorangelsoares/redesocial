@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Controller de postagem
@@ -25,59 +26,43 @@ public class PostagemController {
 	//End point
 	@RequestMapping(method = RequestMethod.POST, value="/Postagens",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Postagem> cadastrarPostagem(@RequestBody Postagem postagem) {
-		
-//		if (postagem.getStatusProposta() == null) {
-//			postagem.setStatusProposta("pendente");
-//		}
-//		if (postagem.getStatusDocumentos() == null) {
-//			postagem.setStatusDocumentos("pendente");
-//		}
-//		if (postagem.getStatusSPC() == null) {
-//			postagem.setStatusSPC("pendente");
-//		}
+
+		//postagem.setData(new Date());
 		Postagem postagemCadastrado = postagemService.salvar(postagem);
-		return new ResponseEntity<Postagem>(postagemCadastrado, HttpStatus.CREATED);
+		return new ResponseEntity<>(postagemCadastrado, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/Postagens",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection< Postagem>> buscarTodosPropostas() {
-		Collection< Postagem> PropostasBuscados= postagemService.buscarTodos();
-		return new ResponseEntity<>(PropostasBuscados, HttpStatus.OK);
+	public ResponseEntity<Collection< Postagem>> buscarTodosPostagens() {
+		Collection< Postagem> PostagensBuscados= postagemService.buscarTodos();
+		return new ResponseEntity<>(PostagensBuscados, HttpStatus.OK);
 	}
-
-	/*
-	@RequestMapping(method = RequestMethod.GET, value="/CountPropostas",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <Collection< long>> retornaQuantidadeDePropostas() {
-		Collection <long> quant = PropostaService.retornaQuantidadeDePropostasCadastradas();
-		return new ResponseEntity<>(quant, HttpStatus.OK);
-	}
-	*/
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="/Postagens/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection< Postagem>> excluirPostagem(@PathVariable long id) {
-		Postagem PropostaEncontrado = postagemService.buscarPorId(id);
-		if (PropostaEncontrado == null) {
+		Postagem PostagemEncontrado = postagemService.buscarPorId(id);
+		if (PostagemEncontrado == null) {
 			//mensagem de nao encontrato
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			postagemService.excluir(PropostaEncontrado);
+			postagemService.excluir(PostagemEncontrado);
 			return new ResponseEntity<>( HttpStatus.OK);
 		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/Postagens/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Postagem> buscarPropostaPorId(@PathVariable Integer id) {
-		Postagem Proposta = postagemService.buscarPorId(id);
-		if (Proposta == null) {
+	public ResponseEntity<Postagem> buscarPostagemPorId(@PathVariable Integer id) {
+		Postagem postagem = postagemService.buscarPorId(id);
+		if (postagem == null) {
 			//mensagem de nao encontrato
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<>( Proposta, HttpStatus.OK);
+			return new ResponseEntity<>( postagem, HttpStatus.OK);
 		}
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value="/Postagens",consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Postagem> alterarProposta(@RequestBody Postagem postagem) {
+	public ResponseEntity<Postagem> alterarPostagem(@RequestBody Postagem postagem) {
 		Postagem PostagemAlterado = postagemService.alterar(postagem);
 		return new ResponseEntity<Postagem>(PostagemAlterado, HttpStatus.OK);
 	}

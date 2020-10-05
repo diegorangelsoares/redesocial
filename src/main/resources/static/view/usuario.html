@@ -18,7 +18,7 @@
 		<div>		
 		<label>Senha: </label>
 			<input type="password" ng-model="usuario.senha" class="form-control" placeholder="Ex.: !a@s#d" style ="font-size:13px; width:600px" name="txtSenha"  required/>
-			<span ng-show="frmUsuario.txtSenha.$error.required && frmUsuario.txtSenha.$dirty">Senha tem que conter no m�nimo 3 caracteres!</span>
+			<span ng-show="frmUsuario.txtSenha.$error.required && frmUsuario.txtSenha.$dirty">Senha tem que conter no mínimo 3 caracteres!</span>
 		</div>	
 		<!-- 
 		<div>		
@@ -30,7 +30,7 @@
 			<label for="singleSelect"> Perfil: </label>
 	    	<select name="singleSelect" class="form-control" ng-model="usuario.permissao" material-select watch required style ="font-size:16px; width:150px">
 	        <option value="admin">Administrador</option>
-	        <option value="auditor">Auditor</option>
+<!--	        <option value="auditor">Auditor</option>-->
 	        <option value="cadastro">Cadastro</option>
 	    </select><br>
 		
@@ -51,7 +51,7 @@
 			  <thead>
 			    <tr>
 			      <th scope="col">ID</th>
-			      <th scope="col">Usu�rio</th>
+			      <th scope="col">Usuário</th>
 			      <th scope="col">Perfil</th>
 			      <th scope="col">Excluir</th>
 			       <th scope="col">Alterar</th>

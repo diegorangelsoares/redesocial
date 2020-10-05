@@ -20,20 +20,20 @@ appCliente.config(['$routeProvider', function($routeProvider) {
 		// .when('/clientes/:clienteId', {
 		// 	templateUrl: 'view/cliente-detalhe.html',
 		// 	controller : "clienteDetalheController"
-		// })
-		// .when('/acessoNegado', {
-        //     templateUrl: 'view/acessoNegado.html',
-        //     controller: 'acessoNegadoController'
-        // })
+		//})
+		.when('/acessoNegado', {
+            templateUrl: 'view/acessoNegado.html',
+            controller: 'acessoNegadoController'
+        })
         // .when('/usuarios', {
         //     templateUrl: 'view/usuario.html',
         //     controller: 'usuarioController'
         // })
-		// .when('/logout', {
-		// 	//templateUrl: 'index.html',
-		// 	//controller : "mainController",
-		// 	redirectTo:'/'
-		// })
+		.when('/logout', {
+			//templateUrl: 'index.html',
+			//controller : "mainController",
+			redirectTo:'/'
+		})
 		.when('/home', {
 			templateUrl: 'view/home.html',
             controller: 'homeController'

@@ -10,18 +10,15 @@ appCliente.controller("postagensController", function ($scope, $http){
 	$scope.usuarios = [];
 	$scope.usuario={}; // o que setar aqui reflete na tela  -> bind com o model
 	
-	//$rootScope.quantidadePropostas = 0;
+	//$rootScope.quantidadePostagens = 0;
 
-	//Request alimenta a array proposta com o response da api rest
-	//$scope.carregarPropostas = function (){
+	//Request alimenta a array Postagem com o response da api rest
+	//$scope.carregarPostagens = function (){
 	carregarPostagens = function (){
-		//token = localStorage.getItem("userToken");
-		//$http.defaults.headers.common.Authorization = 'Bearer '+token;
-		//$http({method:'GET', url:'/admin/Propostas'})
 		$http({method:'GET', url:'/Postagens'})
-		.then(function(response){PostagemController
+		.then(function(response){
 			$scope.postagem = response.data;
-			//$scope.quantidadePropostas = $scope.usuario.count();
+			//$scope.quantidadePostagens = $scope.usuario.count();
 			console.log(response.data);
 			console.log(response.status);
 		}, function (response){
@@ -62,21 +59,21 @@ appCliente.controller("postagensController", function ($scope, $http){
 	// 	});
 	// };
 	
-	$scope.salvarPropostas = function (){		
-		if ($scope.frmProposta.$valid){
-			//$http({method:'POST', url:'http://localhost:8080/admin/Propostas', data:$scope.proposta})
-			$http({method:'POST', url:'http://localhost:8080/Postagens', data:$scope.proposta})
+	$scope.salvarPostagem = function (){
+		console.log("Chamou o salvarPostagem");
+		if ($scope.frmPostagem.$valid){
+			$http({method:'POST', url:'http://localhost:8080/Postagens', data:$scope.postagem})
 			.then(function(response){
 				
-				$scope.propostas.push (response.data);
+				$scope.postagens.push (response.data);
 				console.log(response.data);
 				console.log(response.status);
-				carregarPropostas();
+				//carregarPropostas();
 				//CHAMA PARA LIMPAR O CAMPO
-				$scope.cancelarAlteracaoProposta()
-				$scope.frmProposta.$setPristine(true);
+				//$scope.cancelarAlteracaoProposta()
+				$scope.frmPostagem.$setPristine(true);
 			}, function (response){
-				console.log(response.data);
+				//console.log(response.data);
 				console.log(response.status);
 			});
 			
@@ -104,19 +101,19 @@ appCliente.controller("postagensController", function ($scope, $http){
 		});
 	}
 	
-	$scope.alterarProposta = function (pro) {
-		$scope.proposta = angular.copy(pro);
+	$scope.alterarPostagem = function (po) {
+		$scope.postagem = angular.copy(po);
 		
 	}
 	
-	$scope.cancelarAlteracaoProposta = function(){
-		$scope.proposta = {};
+	$scope.cancelarAlteracaoPostagem = function(){
+		$scope.postagem = {};
 	}
 	
 	
-	carregarPropostas();
-	carregarClientes();
-	carregarUsuarios();
+	carregarPostagens();
+	//carregarClientes();
+	//carregarUsuarios();
 
 	
 });

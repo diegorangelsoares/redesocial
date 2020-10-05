@@ -29,7 +29,6 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value="/autenticar",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public loginResponse autenticar(@RequestBody PessoaUsuario pessoaUsuario) throws ServletException {
 
-		System.out.println("Login: "+pessoaUsuario.getLogin());
 		if ( pessoaUsuario.getLogin() == null) {
 			throw new ServletException("Login e senha obrigatório.");
 		}
@@ -48,10 +47,10 @@ public class LoginController {
 		//String token = Jwts.builder().setSubject(usuarioAutenticado.getNome()).signWith(SignatureAlgorithm.HS256, "diegorangeldoareasdlskmadlkdmsalsdlskmadlkdmsal").setExpiration(new Date(System.currentTimeMillis() + 500 * 60 * 1000)).compact();
 		//return new loginResponse(token);
 		//return new loginResponse(token, usuario);
+
+//		usuarioAutenticado = pessoaUsuarioService.buscarPorNome("diego");
 		
-		//Usuario usu = usuarioService.buscarPorNome(usuario.getNome());
 		return new loginResponse(usuarioAutenticado);
-		//return usuario;
 	}
 
 

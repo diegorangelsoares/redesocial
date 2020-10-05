@@ -8,40 +8,30 @@
 	<h4>Posts</h4><br/>
 		
 		<form novalidate name="frmPostagem">
-<!--		<div>-->
-<!--		<label>Data do cadastro: </label>-->
-<!--		 	<input type="date" class="form-control" style ="font-size:13px; width:150px" ng-minlength="1" ng-maxlength="100" name="txtData" ng-model="proposta.data" required/>-->
-<!--			<span ng-show="frmPostagem.txtData.$error.required && frmPostagem.txtData.$dirty" >Campo Data Obrigatório</span>-->
-<!--		</div>	-->
-<!--		</br>-->
-		
-<!--		<div>-->
-<!--		<label for="singleSelect">Usu&aacuterio: </label>-->
-<!--		    <select name="txtIdUsuario" class="form-control" ng-model="proposta.usuario.id" material-select watch required  style ="font-size:16px; width:400px">-->
-<!--		     	<option ng-repeat="usu in usuarios" value="{{usu.id}}">{{usu.nome}}</option>-->
-<!--		    </select><br>-->
-<!--		<div>-->
-		
-<!--		<div>-->
-<!--		<label for="singleSelect">Cliente: </label>-->
-<!--		    <select name="txtIdCliente" class="form-control" ng-model="proposta.cliente.id" material-select watch required  style ="font-size:16px; width:400px">-->
-<!--		     	<option ng-repeat="cli in clientes" value="{{cli.id}}">{{cli.nome}}</option>-->
-<!--		    </select><br>-->
-<!--		<div>-->
 
 			<div class="form-group">
 				<label>O que você deseja postar? </label>
 				<input type="text" class="form-control" style ="font-size:13px; width:600px" ng-minlength="1" ng-maxlength="300" name="txtTexto" ng-model="postagem.texto" required/>
 				<span ng-show="frmPostagem.txtTexto.$error.required && frmPostagem.txtTexto.$dirty">Texto obrigatório</span>
 			</div>
-			<!-- <input type="button" value="Salvar" ng-click="salvarClientes()" ng-disabled="frmProposta.$invalid"/> -->
+
+			<div class="form-group">
+				<label>Digite um assunto: </label>
+				<input type="text" class="form-control" style ="font-size:13px; width:600px" ng-minlength="1" ng-maxlength="300" name="txtAssunto" ng-model="postagem.assunto" required/>
+				<span ng-show="frmPostagem.txtAssunto.$error.required && frmPostagem.txtAssunto.$dirty">assunto obrigatório</span>
+			</div>
+
+
+
+
+			<!-- <input type="button" value="Salvar" ng-click="salvarClientes()" ng-disabled="frmPostagem.$invalid"/> -->
 			<input type="button" class="btn btn-secondary" value="Postar" ng-click="salvarPostagem()"/>
-			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoProposta()"ng-disabled="frmPostagem.$invalid"/>
+			<input type="button" class="btn btn-secondary" value="Cancelar" ng-click="cancelarAlteracaoPostagem()"ng-disabled="frmPostagem.$invalid"/>
 		<div style="">
 		<!-- 
 			<fieldset>
 				<legend>Formulario</legend>
-				valid: {{frmProposta.$valid}}
+				valid: {{frmPostagem.$valid}}
 			</fieldset>
 			 -->
 		</div>		
@@ -74,7 +64,7 @@
 					      <td>{{po.texto }}</td>
 <!--					      <td>{{po.usuario.nome }}</td>-->
 					    </tr>
-				    </div>
+
 				</tbody>
 			</table>
 			
